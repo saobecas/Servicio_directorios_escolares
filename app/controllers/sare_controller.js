@@ -22,7 +22,8 @@ async createSare(req, res) {
         createdAt: new Date(),
         updatedAt: new Date()
     },
-    {include: ['regions']});
+        );
+    //{include: ['regions']});
 
     //succesfull 
     await sare.addRegion(region, { through: { selfGranted: false }});
