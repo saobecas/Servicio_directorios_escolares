@@ -58,12 +58,12 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   School.associate = function(models) {
-  /*  School.belongsTo(models.user, {
+   School.belongsTo(models.user, {
       foreignKey: 'userId',
       targetKey: 'id',
       as: 'usuario'
     });
-*/
+
     School.belongsTo(models.localidad, {
       foreignKey: 'localidadId',
       targetKey: 'id',
