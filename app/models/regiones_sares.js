@@ -3,9 +3,9 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Region extends Model {
+  class Regiones_sares extends Model {
     /**
-     * Helper meSSSSthod for defining associations.
+     * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
@@ -13,20 +13,13 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Region.init({
-    nameRegion: DataTypes.STRING,
+  Regiones_sares.init({
   }, {
     sequelize,
-    modelName: 'region',
+    modelName: 'regiones_sares',
   });
-   
-  Region.associate = function(models){
-    Region.hasMany(models.municipio, {
-      foreignKey: 'regionId',
-      sourceKey: 'id'
-     // as: 'school'
-    });
-    Region.belongsToMany(models.sare, {
+  Regiones_sares.associations = function(models) {
+    Regiones_sares.belongsToMany(models.region, {
       through: 'regiones_sares',
       onDelete: 'CASCADE', // default for belongsToMany
       onUpdate: 'CASCADE', // default for belongsToMany
@@ -34,14 +27,19 @@ module.exports = (sequelize, DataTypes) => {
         name: 'regionId',
         type: DataTypes.INTEGER,
         
-      }});
-    
-/*
-    Region.belongsToMany(models.sare, {
-      through: 'regionsares'
+      },
     });
-     */
+    Regiones_sares.belongsToMany(models.sare, {
+      through: 'regiones_sares',
+      onDelete: 'CASCADE', // default for belongsToMany
+      onUpdate: 'CASCADE', // default for belongsToMany
+      foreignKey: {
+        name: 'sareId',
+        type: DataTypes.INTEGER,
+        
+      },
+    });
+     
   }
-
-  return Region;
+  return Regiones_sares;
 };

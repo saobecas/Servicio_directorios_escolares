@@ -55,10 +55,19 @@ module.exports = (sequelize, DataTypes) => {
       as: 'localidad'
     });
     Sare.belongsToMany(models.region, {
+      through: 'regiones_sares',
+      onDelete: 'CASCADE', // default for belongsToMany
+      onUpdate: 'CASCADE', // default for belongsToMany
+      foreignKey: {
+        name: 'sareId',
+        type: DataTypes.INTEGER,
+        
+      }});
+    /*Sare.belongsToMany(models.region, {
       through: 'regionsares',
       as: 'Regiones'
     });
-   
+   */
   }
 
   return Sare;
