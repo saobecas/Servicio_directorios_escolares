@@ -56,7 +56,7 @@ module.exports = (sequelize, DataTypes) => {
     });
     Sare.belongsToMany(models.region, {
       through: 'regionsares',
-      as: 'regiones'
+      as: 'Regiones'
     });
    
   }
