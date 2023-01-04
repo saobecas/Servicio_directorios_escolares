@@ -76,8 +76,8 @@ async allSchool(req,res){
            /* {
  all: true,
         }*/
-          // 'usuario','localidad','ubicacion', {
-           'localidad','ubicacion', {
+          'usuario','localidad','ubicacion', {
+           //'localidad','ubicacion', {
              association: db.school.associations.director,
                include: [ 'supervisor' ],
                 
