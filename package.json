@@ -1,0 +1,38 @@
+{
+  "name": "ejemplo-seqelize-cli",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon app/server",
+    "start": "node app/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "chalk": "^5.0.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "express-validator": "^6.14.2",
+    "jsonwebtoken": "^9.0.0",
+    "nodemon": "^2.0.19",
+    "pg": "^8.8.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize-cli": "^6.4.1"
+  },
+  "devDependencies": {
+    "sequelize": "^6.21.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yoba95/directoriosAPIversion1.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yoba95/directoriosAPIversion1/issues"
+  },
+  "homepage": "https://github.com/yoba95/directoriosAPIversion1#readme",
+  "description": ""
+}
