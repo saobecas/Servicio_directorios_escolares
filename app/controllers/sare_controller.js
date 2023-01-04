@@ -34,9 +34,9 @@ async createSare(req, res) {
     return res.status(200).json({sare: sare});
     } catch (error) {
         console.log(error);
-        return res.status(500).json("error del servidor"); 
+        return res.status(500).json("A ocurrido un error en el servidor"); 
     }
-   
+   //Probando
 },
 
 async allSare (req,res) {
