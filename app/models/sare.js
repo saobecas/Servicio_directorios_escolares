@@ -31,7 +31,8 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       }
   },*/
-    localidadId: {
+
+  localidadId: {
       type: DataTypes.INTEGER,
       references: {
         model: 'localidads',
@@ -55,6 +56,7 @@ module.exports = (sequelize, DataTypes) => {
     });
     Sare.belongsToMany(models.region, {
       through: 'regionsares',
+      as: 'regiones'
     });
    
   }

@@ -1,6 +1,6 @@
 const { query } = require('express');
 const { body } = require('express-validator');
-const { sequelize } = require('../models');
+const d = require('../models/index');
 const db = require('../models'); //prueba exitosa pero con difine
 module.exports = {
 
@@ -19,31 +19,35 @@ async createSare(req, res) {
         longitud,
         latitud,
         localidadId,
-  
-
         createdAt: new Date(),
         updatedAt: new Date()
     },
-    //{include: 'regions'}
+    //{include: 'regions'});
+
     );
+    /*const [results, metadata] = await sequelize.query(`INSERT INTO regionsares("createdAt","updatedAt","regionId", "sareId")
+    VALUES ('${new Date()}','${new Date()}',1,13(${region},${sare.id})`);*/
+        
+        
     //{include: ['regions']});
 
     //succesfull 
     await sare.addRegion(region, { through: { selfGranted: false }});
     
-    return res.status(200).json({sare: sare});
+    return res.status(200).json({sare: sare.id});
     } catch (error) {
         console.log(error);
-        return res.status(500).json("A ocurrido un error en el servidor"); 
+        return res.status(500).json("Error: "+error); 
     }
    //Probando
 },
 
 async allSare (req,res) {
     try {
-         const sares = await db.sare.findAll({
+        const nueva = await m.findAll();
+         /*const sares = await db.sare.findAll({
             //include: [{all:true}]
-            include: ['regions','localidad',{
+            include: ['regiones','localidad',{
                 association: db.sare.associations.localidad,
                 include: [ 'municipio',
             {
@@ -51,7 +55,7 @@ async allSare (req,res) {
                 include: ['region'] 
             } ]}]
          }
-         );
+         );*/
          //const sares = await db.sares.findAll();
          return res.status(200).json({sares :sares});
         //return res.status(202).json(sares); 
@@ -98,7 +102,7 @@ async getRegionSareId(req, res){
 //Actualizar regiones atendidas
 async addRegionSare(req, res){
     const {id} = req.params;
-    //const region = req.body;
+    const regiones = req.body;
     try {
         const sares = await db.sare.findOne({
             where: {
@@ -113,7 +117,7 @@ async addRegionSare(req, res){
         
         const [results, metadata] = await sequelize.query('delete from regionsares where "sareId" ='+id);
         
-        const addR = await sares.addRegion([1,2,3], { through: { selfGranted: false }});
+        const addR = await sares.addRegion(regiones, { through: { selfGranted: false }});
         
         const n = await db.sare.findOne({
             where: {
