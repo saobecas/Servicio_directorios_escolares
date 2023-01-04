@@ -1,6 +1,5 @@
 const { query } = require('express');
 const { body } = require('express-validator');
-const { sequelize } = require('../models');
 const db = require('../models'); //prueba exitosa pero con difine
 const regiones_sares = require('../models/regiones_sares');
 module.exports = {
@@ -26,14 +25,17 @@ async createSare(req, res) {
         );
     //{include: ['regions']});
     //funciona
-    const ot = await sare.addRegion(region, { through: { selfGranted: false }});
+    //console.log()
+    const reg = await JSON.parse(region);
+    console.log("=========================="+typeof(reg)+" "+reg );
+    const ot = await sare.addRegion(reg, { through: { selfGranted: false }});
     //succesfull 
     //const result = await sare.addRegiones(region, { through: { selfGranted: false }});
     //const ot = await sare.addRegion(region, { through: { selfGranted: false }});
     //const resul = await sare.addRegions([region]);
     //const s = await sare.getRegions({ joinTableAttributes: [] });
 
-
+    
     return res.status(200).json({sare: sare});
     } catch (error) {
         console.log(error);
