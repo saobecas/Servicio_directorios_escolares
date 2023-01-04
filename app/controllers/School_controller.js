@@ -28,7 +28,7 @@ async createSchool(req, res){
         localidadId,
         createdAt: new Date(),
         updatedAt: new Date(),
-     //  userId: iduser.id,
+        userId: iduser.id,
         ubicacion:{
             longitud:long,
             latidud: lat,

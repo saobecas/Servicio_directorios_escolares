@@ -2,6 +2,9 @@
 const {
   Model
 } = require('sequelize');
+
+const camelCase = require('lodash/camelCase');
+const db = require('../models');
 module.exports = (sequelize, DataTypes) => {
   class Sare extends Model {
     /**
@@ -38,6 +41,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'sare',
+    scopes: {
+      default: true
+      },
+    
   });
    
   Sare.associate = function(models) {
@@ -49,6 +56,7 @@ module.exports = (sequelize, DataTypes) => {
     Sare.belongsToMany(models.region, {
       through: 'regionsares',
     });
+   
   }
 
   return Sare;

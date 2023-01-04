@@ -19,16 +19,19 @@ async createSare(req, res) {
         longitud,
         latitud,
         localidadId,
+  
+
         createdAt: new Date(),
         updatedAt: new Date()
     },
-        );
+    //{include: 'regions'}
+    );
     //{include: ['regions']});
 
     //succesfull 
     await sare.addRegion(region, { through: { selfGranted: false }});
     
-    return res.status(200).json({sare: sare ,include: db.sare.associations.regionsares});
+    return res.status(200).json({sare: sare});
     } catch (error) {
         console.log(error);
         return res.status(500).json("error del servidor"); 
@@ -39,7 +42,6 @@ async createSare(req, res) {
 async allSare (req,res) {
     try {
          const sares = await db.sare.findAll({
-            
             //include: [{all:true}]
             include: ['regions','localidad',{
                 association: db.sare.associations.localidad,
@@ -50,6 +52,7 @@ async allSare (req,res) {
             } ]}]
          }
          );
+         //const sares = await db.sares.findAll();
          return res.status(200).json({sares :sares});
         //return res.status(202).json(sares); 
       } catch (error) {

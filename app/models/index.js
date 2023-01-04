@@ -37,7 +37,13 @@ Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }
+  if (db[modelName].addScopes) {
+    db[modelName].addScopes(db);
+  }
 });
+//they have all been initialized
+
+
 //} catch (err) {
 //  console.error(err)
 //}
