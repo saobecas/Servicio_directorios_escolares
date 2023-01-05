@@ -99,7 +99,7 @@ async checkExistedSchool(req, res, next){
         
     let school = await db.school.findOne({
         where: {
-            email: req.body.email_school
+            cct: req.body.cct
         },
         include: [ {all: true} ]
         }).then(school => {
@@ -110,7 +110,7 @@ async checkExistedSchool(req, res, next){
                 //res.status(401).json({ msg: "La escuela con este correo no existe" })
                 
             } else {
-                res.status(400).json( "Ya se encuentra registrada una escuela con este correo" )
+                res.status(400).json( "Ya se encuentra registrada una escuela con esta clave" )
             }
         
         }).catch(err => {

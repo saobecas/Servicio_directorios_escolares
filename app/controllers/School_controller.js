@@ -72,20 +72,13 @@ async allSchool(req,res){
     try {
         let school = await db.school.findAll({
             
-        include: [ 
-           /* {
- all: true,
-        }*/
-          'usuario',{include: ['employee']},'localidad','ubicacion', {
-           //'localidad','ubicacion', {
-             association: db.school.associations.director,
-               include: [ 'supervisor' ],
-                
-           
-           
-        }
-           //'usuario'
-         ]
+                include: ['localidad','ubicacion',{
+                   association: db.school.associations.usuario,
+                   include: [ 'employee' ],
+                 },{
+                    association: db.school.associations.director,
+                      include: [ 'supervisor' ] }]
+       
     })
     return res.status(200).json({schols:school});
     } catch (error) {
